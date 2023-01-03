@@ -1,0 +1,191 @@
+/* Layout */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Questrial', sans-serif;
+    margin: 0;
+}
+
+#container {
+    padding-left: 200px;
+    padding-right: 190px;
+}
+
+#container .column {
+    position: relative;
+    float: left;
+}
+
+#center {
+    padding: 10px 20px;
+    width: 100%;
+}
+
+#left {
+    width: 180px;
+    padding: 0 10px;
+    right: 240px;
+    margin-left: -100%;
+}
+
+#right {
+    width: 130px;
+    padding: 0 10px;
+    margin-right: -100%;
+}
+
+#footer {
+    clear: both;
+}
+
+/* IE hack */
+* html #left {
+    left: 150px;
+}
+
+/* Make the columns the same height as each other */
+#container {
+    overflow: hidden;
+}
+
+#container .column {
+    padding-bottom: 1001em;
+    margin-bottom: -1000em;
+}
+
+/* Fix for the footer */
+* html body {
+    overflow: hidden;
+}
+
+* html #footer-wrapper {
+    float: left;
+    position: relative;
+    width: 100%;
+    padding-bottom: 10010px;
+    margin-bottom: -10000px;
+    background: #fff;
+}
+
+/* Aesthetics */
+
+p {
+    color: #555;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul a {
+    color: darkgreen;
+    text-decoration: none;
+}
+
+.center {
+    text-align: center;
+}
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.message_header{
+    font-size: 16px;
+    padding: 9px 16px;
+    height: 44px;
+    background: #e6cdd1;
+}
+
+#header, #footer {
+    font-size: large;
+    padding: 0.3em;
+    height: 35px;
+    background: #e6cdd1;
+}
+
+#left {
+    background: #DAE9BC;
+}
+
+#right {
+    background: #F7FDEB;
+}
+
+#center {
+    background: #fff;
+}
+
+#container .column {
+    padding-top: 1em;
+}
+
+marquee {
+    text-align: justify;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 60%;
+    width: auto;
+    margin-top: -15px;
+    padding: 22px;
+    color: black;
+    font-weight: bold;
+    font-size: 23px;
+    transition: 0.6s ease;
+    border-radius: 3px;
+    user-select: none;
+    background: white;
+    display: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 150px;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev {
+    left: 150px;
+    border-radius: 3px 0 0 3px;
+}
+
+.column-5 {
+    float: left;
+    width: 20%;
+}
+
+.column-4 {
+    float: left;
+    width: 25%;
+}
+
+.column-3 {
+    float: left;
+    width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.content {
+    max-width: 80%;
+    margin-left: auto;
+}
