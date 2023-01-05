@@ -56,7 +56,21 @@ function get_menu_content($title, $field, $post_type, $class_colum, $image_name 
             <?php if(get_url_img($image_name) && $image_name != null){?>
             <img src="<?php echo get_url_img($image_name)?>" style="object-fit: contain; max-width: 250px; max-height: 220px; margin: auto">
             <?php } ?>
-            <?php get_list_customer_fields($field,$post_type); ?>
+
+            <?php if($field && $post_type) {
+            get_list_customer_fields($field,$post_type);}
+            ?>
+        </div>
+    </div>
+<?php }
+
+function get_menu_image_content($image_name = null) { ?>
+    <div class="column-4">
+        <div style="width: 90%; margin: auto">
+			<?php if(get_url_img($image_name) && $image_name != null){?>
+                <img src="<?php echo get_url_img($image_name)?>" style="object-fit: contain; max-width: 300px; max-height: 220px; margin: auto">
+			<?php } ?>
+            <p style="font-weight: bold; text-align: center"><?php echo $image_name ?></p>
         </div>
     </div>
 <?php }
@@ -73,6 +87,23 @@ function drop_down_menu_lashes(){ ?>
 </div>
 <?php }
 
+function drop_down_menu_tweezers (){ ?>
+    <div class="dropdown-content">
+        <div class="row" style="width: 90%; margin: auto; font-size: 16px">
+			<?php
+			get_menu_image_content("City Collection");
+			get_menu_image_content("Classic Tweezers");
+			get_menu_image_content("Gold Collection");
+			get_menu_image_content("Isolation Tweezers");
+			get_menu_image_content("Master Pro Tweezers");
+			get_menu_image_content("Mega Volume Tweezers");
+			get_menu_image_content("Platinum Collection");
+			get_menu_image_content("	Volume Tweezers");
+            ?>
+        </div>
+    </div>
+<?php }
+
 function drop_down_menu_adhesive (){ ?>
     <div class="dropdown-content">
         <div class="row" style="width: 90%; margin: auto; font-size: 16px">
@@ -81,12 +112,13 @@ function drop_down_menu_adhesive (){ ?>
 			get_menu_content("Shop All", "shop_all", "adhesives","column-5"); ?>
             <div style = "width: 40%; float: left;">
                 <div style="width: 90%; margin: auto">
-                        <img src="<?php echo get_url_img("adhesives")?>" style="object-fit: contain; max-width: 500px; max-height: 500px; margin: auto; display: inline-block">
+                    <img src="<?php echo get_url_img("adhesives")?>" style="object-fit: contain; max-width: 500px; max-height: 500px; margin: auto; display: inline-block">
                 </div>
             </div>
         </div>
     </div>
 <?php }
+
 
 function my_wp_content_function($content) {
     return strip_tags($content,"<br><h2>"); //add any tags here you want to preserve

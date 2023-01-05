@@ -101,7 +101,7 @@
             <button class="dropbtn-nav-menu">Tweezers
                 <i class="small_arrow down"></i>
             </button>
-            <div class="dropdown-content">
+            <?php echo drop_down_menu_tweezers() ?>
             </div>
         </div>
 
