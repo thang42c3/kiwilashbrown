@@ -18,7 +18,7 @@
                     $runningTexts->the_post();
                 ?>
                 <span style="margin-left:100px">
-                    <?php print the_content() ?>
+                    <?php echo the_content() ?>
                 </span>
                 <?php } ?>
             </marquee>
@@ -93,7 +93,7 @@
             <button class="dropbtn-nav-menu">Adhesives
                 <i class="small_arrow down"></i>
             </button>
-            <div class="dropdown-content">
+	        <?php echo drop_down_menu_adhesive() ?>
             </div>
         </div>
 

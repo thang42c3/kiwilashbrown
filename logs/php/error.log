@@ -1671,3 +1671,35 @@ Stack trace:
 #6 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\index.php(17): require('C:\\Users\\ACER\\L...')
 #7 {main}
   thrown in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php on line 88
+[04-Jan-2023 13:18:08 UTC] PHP Warning:  file_get_contents(): SSL operation failed with code 1. OpenSSL Error messages:
+error:1416F086:SSL routines:tls_process_server_certificate:certificate verify failed in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php on line 31
+[04-Jan-2023 13:18:08 UTC] PHP Warning:  file_get_contents(): Failed to enable crypto in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php on line 31
+[04-Jan-2023 13:18:08 UTC] PHP Warning:  file_get_contents(https://kiwilashbrown.local/wp-content/themes/kiwi-lash-brown-theme/kiwi-lash-brown-theme/template-parts/header/klb-worldwide.html): Failed to open stream: operation failed in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php on line 31
+[04-Jan-2023 14:24:24 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "fff" in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php:21
+Stack trace:
+#0 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-includes\template.php(783): require_once()
+#1 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-includes\template.php(718): load_template('C:\\Users\\ACER\\L...', true, Array)
+#2 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-includes\general-template.php(48): locate_template(Array, true, true, Array)
+#3 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\index.php(2): get_header()
+#4 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-includes\template-loader.php(106): include('C:\\Users\\ACER\\L...')
+#5 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-blog-header.php(19): require_once('C:\\Users\\ACER\\L...')
+#6 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\index.php(17): require('C:\\Users\\ACER\\L...')
+#7 {main}
+  thrown in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php on line 21
+[04-Jan-2023 15:23:37 UTC] PHP Warning:  file_get_contents(): SSL operation failed with code 1. OpenSSL Error messages:
+error:1416F086:SSL routines:tls_process_server_certificate:certificate verify failed in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php on line 31
+[04-Jan-2023 15:23:37 UTC] PHP Warning:  file_get_contents(): Failed to enable crypto in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php on line 31
+[04-Jan-2023 15:23:37 UTC] PHP Warning:  file_get_contents(https://kiwilashbrown.local/wp-content/themes/kiwi-lash-brown-theme/kiwi-lash-brown-theme/template-parts/header/klb-worldwide.html): Failed to open stream: operation failed in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php on line 31
+[04-Jan-2023 16:10:42 UTC] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string & bool in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\functions.php:56
+Stack trace:
+#0 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\functions.php(67): get_menu_content('Technique', 'technique', 'lashes', 'column-5', 'lashes-techniqu...')
+#1 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\header.php(88): drop_down_menu_lashes()
+#2 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-includes\template.php(783): require_once('C:\\Users\\ACER\\L...')
+#3 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-includes\template.php(718): load_template('C:\\Users\\ACER\\L...', true, Array)
+#4 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-includes\general-template.php(48): locate_template(Array, true, true, Array)
+#5 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\index.php(2): get_header()
+#6 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-includes\template-loader.php(106): include('C:\\Users\\ACER\\L...')
+#7 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-blog-header.php(19): require_once('C:\\Users\\ACER\\L...')
+#8 C:\Users\ACER\Local Sites\kiwilashbrown\app\public\index.php(17): require('C:\\Users\\ACER\\L...')
+#9 {main}
+  thrown in C:\Users\ACER\Local Sites\kiwilashbrown\app\public\wp-content\themes\kiwi-lash-brown-theme\kiwi-lash-brown-theme\functions.php on line 56

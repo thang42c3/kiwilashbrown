@@ -10,69 +10,9 @@ function kiwi_lash_brown_files() {
 }
 
 add_action('wp_enqueue_scripts', 'kiwi_lash_brown_files');
+add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) );
 
-function klb_post_types() {
-    // Running text Post Type
-    register_post_type('running-texts', array(
-        'show_in_rest' => true,
-        'supports' => array('title', 'editor', 'excerpt'),
-        'rewrite' => array('slug' => 'running-texts'),
-        'has_archive' => true,
-        'public' => true,
-        'labels' => array(
-            'name' => 'Running-texts',
-            'add_new_item' => 'Add New Running Text',
-            'edit_item' => 'Edit Running Text',
-            'all_items' => 'All Running Text',
-            'singular_name' => 'running-texts'
-        ),
-        'menu_icon' => 'dashicons-arrow-left-alt'
-    ));
-}
 
-add_action('init', 'klb_post_types');
-
-function img_types() {
-    // img
-    register_post_type('img', array(
-        'show_in_rest' => true,
-        'supports' => array('title', 'editor', 'excerpt'),
-        'rewrite' => array('slug' => 'img'),
-        'has_archive' => true,
-        'public' => true,
-        'labels' => array(
-            'name' => 'img',
-            'add_new_item' => 'Add New Img',
-            'edit_item' => 'Edit Img',
-            'all_items' => 'All Img',
-            'singular_name' => 'img'
-        ),
-        'menu_icon' => 'dashicons-images-alt'
-    ));
-}
-
-add_action('init', 'img_types');
-
-function lashes() {
-    // lashes
-    register_post_type('lashes', array(
-        'show_in_rest' => true,
-        'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'custom-fields'),
-        'rewrite' => array('slug' => 'lashes'),
-        'has_archive' => true,
-        'public' => true,
-        'labels' => array(
-            'name' => 'lashes',
-            'add_new_item' => 'Add New Lashes',
-            'edit_item' => 'Edit Lashes',
-            'all_items' => 'All Lashes',
-            'singular_name' => 'lashes'
-        ),
-        'menu_icon' => 'dashicons-visibility'
-    ));
-}
-
-add_action('init', 'lashes');
 
 function get_url_img($title) {
         $args =  new WP_Query(array(
@@ -92,11 +32,11 @@ function  query_group_by_filter($groupby){
     return $wpdb->postmeta . '.meta_value ';
 }
 
-function get_list_customer_fields($field) {
+function get_list_customer_fields($field, $post_type) {
     add_filter('posts_groupby', 'query_group_by_filter');
 
     $field_query = new WP_Query(array(
-        'post_type' => 'lashes',
+        'post_type' => $post_type,
         'post_status' => 'publish',
         'posts_per_page' => -1,
         'meta_key' => $field,
@@ -108,34 +48,121 @@ function get_list_customer_fields($field) {
     endwhile;
 }
 
-function get_lashes_menu_content($image_name, $field) { ?>
-    <div class="column-5" style="padding-left: 3px; padding-right: 3px">
-        <p style="font-weight: bold">Technique</p>
-        <hr style="padding-left: 2px;">
-        <img src="<?php echo get_url_img($image_name)?>" style="max-width: 250px; max-height: 220px; margin: auto">
-        <?php get_list_customer_fields($field); ?>
+function get_menu_content($title, $field, $post_type, $class_colum, $image_name = null) { ?>
+    <div class=<?php echo $class_colum ?>>
+        <div style="width: 90%; margin: auto">
+            <p style="font-weight: bold"><?php echo $title ?></p>
+            <hr style="padding-left: 2px;">
+            <?php if(get_url_img($image_name) && $image_name != null){?>
+            <img src="<?php echo get_url_img($image_name)?>" style="object-fit: contain; max-width: 250px; max-height: 220px; margin: auto">
+            <?php } ?>
+            <?php get_list_customer_fields($field,$post_type); ?>
+        </div>
     </div>
 <?php }
 
 function drop_down_menu_lashes(){ ?>
   <div class="dropdown-content">
       <div class="row" style="width: 90%; margin: auto; font-size: 16px">
-          <?php get_lashes_menu_content("lashes-technique", "technique");
-                get_lashes_menu_content("lashes-thickness", "thickness");
-                get_lashes_menu_content("lashes-collection", "collection");
-                get_lashes_menu_content("lashes-special", "special");
-                get_lashes_menu_content("lashes-shopmore", "special") ?>
+          <?php get_menu_content("Technique","technique", "lashes", "column-5", "lashes-technique");
+                get_menu_content("Thickness",  "thickness", "lashes", "column-5", "lashes-thickness");
+                get_menu_content("Collection", "collection", "lashes", "column-5", "lashes-collection");
+                get_menu_content("Special","special", "lashes", "column-5", "lashes-special");
+                get_menu_content("Shop More",  "special", "lashes", "column-5", "lashes-shopmore") ?>
       </div>
 </div>
 <?php }
 
+function drop_down_menu_adhesive (){ ?>
+    <div class="dropdown-content">
+        <div class="row" style="width: 90%; margin: auto; font-size: 16px">
+			<?php get_menu_content("Technique","technique", "adhesives","column-5");
+			get_menu_content("Type", "type", "adhesives","column-5");
+			get_menu_content("Shop All", "shop_all", "adhesives","column-5"); ?>
+            <div style = "width: 40%; float: left;">
+                <div style="width: 90%; margin: auto">
+                        <img src="<?php echo get_url_img("adhesives")?>" style="object-fit: contain; max-width: 500px; max-height: 500px; margin: auto; display: inline-block">
+                </div>
+            </div>
+        </div>
+    </div>
+<?php }
+
 function my_wp_content_function($content) {
-
     return strip_tags($content,"<br><h2>"); //add any tags here you want to preserve
-
 }
 
 add_filter('the_content', 'my_wp_content_function');
 
+function klb_posts_types() {
+	// Running text Post Type
+	register_post_type('running-texts', array(
+		'show_in_rest' => true,
+		'supports' => array('title', 'editor', 'excerpt'),
+		'rewrite' => array('slug' => 'running-texts'),
+		'has_archive' => true,
+		'public' => true,
+		'labels' => array(
+			'name' => 'Running-texts',
+			'add_new_item' => 'Add New Running Text',
+			'edit_item' => 'Edit Running Text',
+			'all_items' => 'All Running Text',
+			'singular_name' => 'running-texts'
+		),
+		'menu_icon' => 'dashicons-arrow-left-alt'
+	));
 
+	// img
+	register_post_type('img', array(
+		'show_in_rest' => true,
+		'supports' => array('title', 'editor', 'excerpt'),
+		'rewrite' => array('slug' => 'img'),
+		'has_archive' => true,
+		'public' => true,
+		'labels' => array(
+			'name' => 'img',
+			'add_new_item' => 'Add New Img',
+			'edit_item' => 'Edit Img',
+			'all_items' => 'All Img',
+			'singular_name' => 'img'
+		),
+		'menu_icon' => 'dashicons-images-alt'
+	));
+
+	// lashes
+	register_post_type('lashes', array(
+		'show_in_rest' => true,
+		'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'custom-fields'),
+		'rewrite' => array('slug' => 'lashes'),
+		'has_archive' => true,
+		'public' => true,
+		'labels' => array(
+			'name' => 'lashes',
+			'add_new_item' => 'Add New Lashes',
+			'edit_item' => 'Edit Lashes',
+			'all_items' => 'All Lashes',
+			'singular_name' => 'lashes'
+		),
+		'menu_icon' => 'dashicons-visibility'
+	));
+
+	// lashes
+	register_post_type('adhesives', array(
+		'show_in_rest' => true,
+		'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'custom-fields'),
+		'rewrite' => array('slug' => 'adhesives'),
+		'has_archive' => true,
+		'public' => true,
+		'labels' => array(
+			'name' => 'adhesives',
+			'add_new_item' => 'Add New Adhesives',
+			'edit_item' => 'Edit Adhesives',
+			'all_items' => 'All Adhesives',
+			'singular_name' => 'Adhesives'
+		),
+		'menu_icon' => 'dashicons-filter'
+	));
+}
+
+add_action('init', 'klb_posts_types');
 
