@@ -7,10 +7,88 @@ function kiwi_lash_brown_files() {
     wp_enqueue_style('index', get_theme_file_uri('/css/style-index.css'));
     wp_enqueue_style('slide-show', get_theme_file_uri('/css/slide-show.css'));
     wp_enqueue_style('menu', get_theme_file_uri('/css/menu.css'));
+	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/inc/bootstrap.min.js', array( 'jquery' ), '4.3.1', true );
+	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/inc/bootstrap.min.css', array(), '4.3.1', 'all' );
 }
 
 add_action('wp_enqueue_scripts', 'kiwi_lash_brown_files');
-add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) );
+/* add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) ); */
+
+function admin_bar(){
+
+	if(is_user_logged_in()){
+		add_filter( 'show_admin_bar', '__return_true' , 1000 );
+	}
+}
+add_action('init', 'admin_bar' );
+
+function kiwi_lash_brown_config() {
+	// This theme uses wp_nav_menu() in two locations.
+	register_nav_menus(
+		array(
+			'fancy_lab_main_menu' 	=> 'Fancy Lab Main Menu',
+			'fancy_lab_footer_menu' => 'Fancy Lab Footer Menu',
+		)
+	);
+
+	// This theme is WooCommerce compatible, so we're adding support to WooCommerce
+	add_theme_support( 'woocommerce', array(
+		'thumbnail_image_width' => 255,
+		'single_image_width'	=> 255,
+		'product_grid' 			=> array(
+			'default_rows'    => 10,
+			'min_rows'        => 5,
+			'max_rows'        => 10,
+			'default_columns' => 1,
+			'min_columns'     => 1,
+			'max_columns'     => 1,
+		)
+	) );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
+
+
+	add_theme_support( 'custom-logo', array(
+		'height' 		=> 180,
+		'width'			=> 300,
+		'flex_height'	=> true,
+		'flex_width'	=> true,
+	) );
+}
+
+add_action( 'after_setup_theme', 'kiwi_lash_brown_config', 0 );
+
+$menu_name = "fancy_lab_main_menu";
+// Check if the menu exists
+$menu_exists = wp_get_nav_menu_object( $menu_name );
+
+// If it doesn't exist, let's create it.
+if( $menu_exists) {
+	wp_delete_nav_menu( $menu_exists );
+}
+	$menu_id = wp_create_nav_menu($menu_name);
+
+	// Set up default menu items
+	$parent_menu = wp_update_nav_menu_item($menu_id, 0, array(
+		'menu-item-title' =>  __('Home'. '&lt;img src="http://yoursite.com/wp-content/themes/yourtheme/images/image.jpg"&gt;'),
+		'menu-item-classes' => 'home',
+		'menu-item-url' => home_url( '/' ),
+		'menu-item-classes' => 'has-mega-menu',
+		'menu-item-status' => 'publish'));
+
+	wp_update_nav_menu_item($menu_id, 0, array(
+		'menu-item-title' =>  __('Custom Page'),
+		'menu-item-url' => home_url( '/custom/' ),
+		'menu-item-status' => 'publish',
+		'menu-item-parent-id' => $parent_menu));
+
+	wp_update_nav_menu_item($menu_id, 0, array(
+		'menu-item-title' =>  __('ALLOOOO'),
+		'menu-item-url' => home_url( '/custom/' ),
+		'menu-item-status' => 'publish',
+		'menu-item-parent-id' => $parent_menu));
+
 
 
 

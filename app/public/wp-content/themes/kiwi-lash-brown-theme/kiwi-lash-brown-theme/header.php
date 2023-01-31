@@ -6,7 +6,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<header class="site-header">
+<header>
     <div class="message_header">
             <marquee behavior="scroll" direction="left" class = "center">
                 <?php
@@ -73,8 +73,10 @@
         -->
     </div>
 
-    <div>
-        <img class = "center-image" src=<?php echo get_theme_file_uri('images/logo/logo.png') ?> alt="Logo" style="max-width:300px">
+    <div class="container text-center">
+        <img class="rounded"
+             src= <?php echo esc_url( wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' )[0] ); ?>
+        alt="Logo">
     </div >
 
 
